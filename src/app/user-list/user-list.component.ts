@@ -1,17 +1,18 @@
+// src/app/user-list/user-list.component.ts
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { UserService } from './services/user.service';
-import { RouterModule, Router } from '@angular/router';  // นำเข้า RouterModule และ Router
+import { UserService } from '../services/user.service';  // ปรับเส้นทางการนำเข้า
+import { RouterModule, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  selector: 'app-user-list',  // ตั้งชื่อ selector ให้ถูกต้อง
+  templateUrl: './user-list.component.html',  // ใช้ไฟล์ template ของ user-list
+  styleUrls: ['./user-list.component.css'],  // ใช้ไฟล์สไตล์ของ user-list
   standalone: true,  // ทำให้เป็น Standalone Component
-  imports: [CommonModule, FormsModule, RouterModule],  // เพิ่มการนำเข้า RouterModule
+  imports: [CommonModule, FormsModule, RouterModule],  // นำเข้าโมดูลที่ต้องใช้
 })
-export class AppComponent implements OnInit {
+export class UserListComponent implements OnInit {
   users: any[] = [];
   newUser = { name: '', email: '', age: '' }; // เก็บค่าฟอร์ม
   editingUser: any = null; // เก็บข้อมูลของผู้ใช้ที่กำลังแก้ไข

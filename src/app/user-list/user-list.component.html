@@ -1,0 +1,150 @@
+<div class="container mx-auto max-w-4xl px-6 py-12">
+  <div class="bg-white shadow-lg rounded-lg p-8">
+    <h1 class="text-3xl font-extrabold text-gray-800 mb-8 text-center">
+      User Management
+    </h1>
+
+    <!-- Add User Section -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
+      <div class="col-span-2 md:col-span-1">
+        <div class="space-y-6">
+          <div>
+            <label for="name" class="block text-sm font-medium text-gray-700"
+              >Name</label
+            >
+            <input
+              id="name"
+              [(ngModel)]="newUser.name"
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+              type="text"
+              placeholder="Enter name"
+            />
+          </div>
+
+          <div>
+            <label for="email" class="block text-sm font-medium text-gray-700"
+              >Email</label
+            >
+            <input
+              id="email"
+              [(ngModel)]="newUser.email"
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+              type="email"
+              placeholder="Enter email"
+            />
+          </div>
+
+          <div>
+            <label for="age" class="block text-sm font-medium text-gray-700"
+              >Age</label
+            >
+            <input
+              id="age"
+              [(ngModel)]="newUser.age"
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+              type="number"
+              placeholder="Enter age"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-end justify-center">
+        <button
+          (click)="addUser()"
+          class="w-full bg-indigo-600 text-white px-6 py-3 rounded-md hover:bg-indigo-700 transition duration-300 ease-in-out transform hover:scale-105"
+        >
+          Add User
+        </button>
+      </div>
+    </div>
+
+    <!-- Edit User Section -->
+    <div *ngIf="editingUser" class="bg-gray-100 p-6 rounded-lg mb-10 shadow-md">
+      <h2 class="text-xl font-bold text-gray-800 mb-6">Edit User</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div>
+          <label for="editName" class="block text-sm font-medium text-gray-700"
+            >Name</label
+          >
+          <input
+            id="editName"
+            [(ngModel)]="editingUser.name"
+            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+            type="text"
+          />
+        </div>
+        <div>
+          <label for="editEmail" class="block text-sm font-medium text-gray-700"
+            >Email</label
+          >
+          <input
+            id="editEmail"
+            [(ngModel)]="editingUser.email"
+            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+            type="email"
+          />
+        </div>
+        <div>
+          <label for="editAge" class="block text-sm font-medium text-gray-700"
+            >Age</label
+          >
+          <input
+            id="editAge"
+            [(ngModel)]="editingUser.age"
+            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+            type="number"
+          />
+        </div>
+      </div>
+      <div class="mt-6 text-right">
+        <button
+          (click)="updateUser()"
+          class="bg-green-500 text-white px-6 py-3 rounded-md hover:bg-green-600 transition duration-300 ease-in-out transform hover:scale-105"
+        >
+          Update User
+        </button>
+      </div>
+    </div>
+
+    <!-- User List Section -->
+    <div class="bg-white shadow-md rounded-lg overflow-hidden">
+      <ul>
+        <li
+          *ngFor="let user of users"
+          class="px-6 py-4 border-b last:border-b-0 hover:bg-gray-50 transition duration-200 flex items-center justify-between"
+        >
+          <div class="flex flex-col md:flex-row">
+            <span class="font-semibold text-gray-800">{{ user.name }}</span>
+            <span class="text-gray-500 mt-2 md:mt-0 md:ml-4">{{
+              user.email
+            }}</span>
+            <span class="text-gray-600 mt-2 md:mt-0 md:ml-4 text-sm"
+              >({{ user.age }} years)</span
+            >
+          </div>
+          <div>
+            <button
+              (click)="viewDetail(user.id)"
+              class="ml-3 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300 ease-in-out transform hover:scale-105"
+            >
+              View Detail
+            </button>
+            <button
+              (click)="editUser(user)"
+              class="mr-3 bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-600 transition duration-300 ease-in-out transform hover:scale-105"
+            >
+              Edit
+            </button>
+            <button
+              (click)="deleteUser(user.id)"
+              class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition duration-300 ease-in-out transform hover:scale-105"
+            >
+              Delete
+            </button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
